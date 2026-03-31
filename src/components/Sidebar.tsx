@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession } from "next/auth/react";
+import { useSession } from "next-auth/react";
 import { Car, LayoutDashboard, ShoppingCart, Store, Users, FileBarChart } from "lucide-react";
 
 export function Sidebar() {
