@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:pages": "npx @opennextjs/cloudflare && cp .open-next/worker.js .open-next/assets/_worker.js",
     "start": "next start",
     "lint": "next lint"
   },
