@@ -1,3 +1,4 @@
+export const runtime = "edge";
 import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { getServerSession } from "next-auth";

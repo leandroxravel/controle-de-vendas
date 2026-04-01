@@ -2,7 +2,7 @@ import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { db } from "./firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import bcrypt from "bcryptjs";
+import { hashSync, compareSync } from "bcrypt-ts";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -32,7 +32,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Usuário não encontrado ou inativo");
         }
 
-        const passwordMatch = await bcrypt.compare(credentials.password, user.passwordHash);
+        const passwordMatch = compareSync(credentials.password, user.passwordHash);
 
         if (!passwordMatch) {
           throw new Error("Senha incorreta");
