@@ -1,9 +1,0 @@
-name = "vehicle-sales-control"
-compatibility_date = "2024-03-31"
-compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = ".vercel/output/static"
-
-[[d1_databases]]
-binding = "DB" # Available in your worker/pages edge function
-database_name = "vehicle_sales_db"
-database_id = "YOUR_D1_DATABASE_ID_HERE"
