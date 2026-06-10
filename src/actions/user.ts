@@ -6,7 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { logAudit } from "./audit";
 import { revalidatePath } from "next/cache";
-import bcrypt from "bcryptjs";
+import { hash } from "bcrypt-ts";
 
 export async function createUser(data: any) {
   const session = await getServerSession(authOptions);
@@ -18,7 +18,7 @@ export async function createUser(data: any) {
   
   if (!querySnapshot.empty) throw new Error("E-mail já está em uso.");
 
-  const passwordHash = await bcrypt.hash(data.password, 10);
+  const passwordHash = await hash(data.password, 10);
 
   const userRef = await addDoc(usersRef, {
     name: data.name,
@@ -39,7 +39,7 @@ export async function changeUserPassword(id: string, newPassword: string) {
   const session = await getServerSession(authOptions);
   if (session?.user.role !== "Administrador") throw new Error("Acesso negado");
 
-  const passwordHash = await bcrypt.hash(newPassword, 10);
+  const passwordHash = await hash(newPassword, 10);
 
   const userDocRef = doc(db, "users", id);
   await updateDoc(userDocRef, {
